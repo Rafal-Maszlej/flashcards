@@ -1,0 +1,45 @@
+version: '3.5'
+
+services:
+  backend:
+    build: ./backend
+    image: flashcards_backend
+    container_name: flashcards_backend
+    command:
+      bash -c "chmod +x db_health_check.sh
+              && ./db_health_check.sh
+              && python manage.py collectstatic --noinput
+              && python manage.py migrate
+              && python manage.py runserver 0.0.0.0:8000"
+    restart: always
+    stdin_open: true
+    tty: true
+    env_file:
+      - ./.env
+    volumes:
+      - ./backend:/backend
+      - static-files:/backend/static
+
+  db:
+    build: ./db
+    image: flashcards_postgres
+    container_name: flashcards_postgres
+    env_file:
+      - ./.env
+    volumes:
+      - ./db/data:/var/lib/postgresql/data
+
+  nginx:
+    build: ./nginx
+    image: flashcards_nginx
+    container_name: flashcards_nginx
+    depends_on:
+      - backend
+    ports:
+      - 80:80
+    restart: always
+    volumes:
+      - static-files:/static
+
+volumes:
+  static-files:
