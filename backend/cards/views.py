@@ -1,3 +1,9 @@
-from django.shortcuts import render
+from rest_framework import viewsets
 
-# Create your views here.
+from cards.models import FlashCard
+from cards.serializers import FlashCardSerializer
+
+
+class FlashCardsViewSet(viewsets.ModelViewSet):
+    queryset = FlashCard.objects.all()
+    serializer_class = FlashCardSerializer
