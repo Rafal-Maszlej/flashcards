@@ -19,7 +19,7 @@ class FlashCardQuestion(models.Model):
     created_at = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
-        return f"<Question: {self.category.name}>"
+        return f"<Question: {self.content}>"
 
 
 class FlashCardAnswer(models.Model):
@@ -29,4 +29,4 @@ class FlashCardAnswer(models.Model):
     created_at = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
-        return f"<Answer: {self.question.category.name}>"
+        return f"<Answer: {self.question.content}>"
