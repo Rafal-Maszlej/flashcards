@@ -18,7 +18,7 @@ from django.urls import path, include
 
 
 api_urls = [
-    path('cards', include('cards.urls')),
+    path('cards/', include('cards.urls')),
 ]
 
 
