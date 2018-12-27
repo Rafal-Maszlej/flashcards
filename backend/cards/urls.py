@@ -1,10 +1,10 @@
 from rest_framework import routers
 
-from cards.views import FlashCardsViewSet
+from cards.views import FlashCardQuestionViewSet
 
 
 router = routers.DefaultRouter()
-router.register('', FlashCardsViewSet, base_name='card')
+router.register('', FlashCardQuestionViewSet, base_name='card')
 
 
 urlpatterns = router.urls

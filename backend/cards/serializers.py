@@ -1,9 +1,9 @@
 from rest_framework import serializers
 
-from cards.models import FlashCard
+from cards.models import FlashCardQuestion
 
 
-class FlashCardSerializer(serializers.ModelSerializer):
+class FlashCardQuestionSerializer(serializers.ModelSerializer):
     class Meta:
-        model = FlashCard
+        model = FlashCardQuestion
         fields = '__all__'
