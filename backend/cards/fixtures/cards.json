@@ -27,6 +27,7 @@
       "category": 1,
       "author": null,
       "content": "question1",
+      "correct_answer": "answer1",
       "created_at": "2019-01-13T19:30:27.928Z"
     }
   },
@@ -37,6 +38,7 @@
       "category": 1,
       "author": 1,
       "content": "question2",
+      "correct_answer": "answer2",
       "created_at": "2019-01-13T19:30:35.892Z"
     }
   },
@@ -47,6 +49,7 @@
       "category": 1,
       "author": 2,
       "content": "question3",
+      "correct_answer": "answer3",
       "created_at": "2019-01-13T19:30:42.722Z"
     }
   },
@@ -57,6 +60,7 @@
       "category": 2,
       "author": 1,
       "content": "question4",
+      "correct_answer": "answer4",
       "created_at": "2019-01-13T19:30:50.897Z"
     }
   },
@@ -67,6 +71,7 @@
       "category": 3,
       "author": 1,
       "content": "question5",
+      "correct_answer": "answer5",
       "created_at": "2019-01-13T19:30:58.342Z"
     }
   },
@@ -77,6 +82,7 @@
       "category": 3,
       "author": 2,
       "content": "question6",
+      "correct_answer": "answer6",
       "created_at": "2019-01-13T19:31:05.595Z"
     }
   },
@@ -87,6 +93,7 @@
       "question": 1,
       "author": 1,
       "content": "answer1",
+      "correct": true,
       "created_at": "2019-01-13T19:31:19.590Z"
     }
   },
@@ -97,6 +104,7 @@
       "question": 2,
       "author": 2,
       "content": "answer2",
+      "correct": true,
       "created_at": "2019-01-13T19:31:27.660Z"
     }
   },
@@ -107,6 +115,7 @@
       "question": 3,
       "author": 1,
       "content": "answer3",
+      "correct": true,
       "created_at": "2019-01-13T19:31:35.645Z"
     }
   },
@@ -117,6 +126,7 @@
       "question": 2,
       "author": 2,
       "content": "answer4",
+      "correct": true,
       "created_at": "2019-01-13T19:31:43.173Z"
     }
   },
@@ -127,6 +137,7 @@
       "question": 6,
       "author": 1,
       "content": "answer5",
+      "correct": true,
       "created_at": "2019-01-13T19:31:51.227Z"
     }
   },
@@ -137,6 +148,7 @@
       "question": 6,
       "author": 2,
       "content": "answer6",
+      "correct": true,
       "created_at": "2019-01-13T19:31:59.542Z"
     }
   },
@@ -147,6 +159,7 @@
       "question": 5,
       "author": 2,
       "content": "answer7",
+      "correct": true,
       "created_at": "2019-01-13T19:32:10.884Z"
     }
   }
