@@ -1,17 +1,17 @@
 from django.contrib import admin
 
-from cards.models import FlashCardAnswer, FlashCardQuestion, FlashCardCategory
+from cards.models import CardAnswer, CardQuestion, CardCategory
 
 
-class FlashCardCategoryAdmin(admin.ModelAdmin):
+class CardCategoryAdmin(admin.ModelAdmin):
     list_display = ('name',)
     search_fields = ('name',)
 
     class Meta:
-        model = FlashCardCategory
+        model = CardCategory
 
 
-class FlashCardQuestionAdmin(admin.ModelAdmin):
+class CardQuestionAdmin(admin.ModelAdmin):
     list_display = ('category', 'author', 'created_at', 'content')
     list_filter = ('category', 'author')
     search_fields = ('author__username', 'content')
@@ -19,10 +19,10 @@ class FlashCardQuestionAdmin(admin.ModelAdmin):
     date_hierarchy = 'created_at'
 
     class Meta:
-        model = FlashCardQuestion
+        model = CardQuestion
 
 
-class FlashCardAnswerAdmin(admin.ModelAdmin):
+class CardAnswerAdmin(admin.ModelAdmin):
     list_display = ('question', 'author', 'created_at', 'content')
     list_filter = ('question', 'author')
     search_fields = ('author__username', 'content')
@@ -30,9 +30,9 @@ class FlashCardAnswerAdmin(admin.ModelAdmin):
     date_hierarchy = 'created_at'
 
     class Meta:
-        models = FlashCardAnswer
+        models = CardAnswer
 
 
-admin.site.register(FlashCardCategory, FlashCardCategoryAdmin)
-admin.site.register(FlashCardQuestion, FlashCardQuestionAdmin)
-admin.site.register(FlashCardAnswer, FlashCardAnswerAdmin)
+admin.site.register(CardCategory, CardCategoryAdmin)
+admin.site.register(CardQuestion, CardQuestionAdmin)
+admin.site.register(CardAnswer, CardAnswerAdmin)

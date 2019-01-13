@@ -1,21 +1,21 @@
 from rest_framework import serializers
 
-from cards.models import FlashCardQuestion, FlashCardAnswer, FlashCardCategory
+from cards.models import CardQuestion, CardAnswer, CardCategory
 
 
-class FlashCardCategorySerializer(serializers.ModelSerializer):
+class CardCategorySerializer(serializers.ModelSerializer):
     class Meta:
-        model = FlashCardCategory
+        model = CardCategory
         fields = '__all__'
 
 
-class FlashCardQuestionSerializer(serializers.ModelSerializer):
+class CardQuestionSerializer(serializers.ModelSerializer):
     class Meta:
-        model = FlashCardQuestion
+        model = CardQuestion
         fields = '__all__'
 
 
-class FlashCardAnswerSerializer(serializers.ModelSerializer):
+class CardAnswerSerializer(serializers.ModelSerializer):
     class Meta:
-        model = FlashCardAnswer
+        model = CardAnswer
         fields = '__all__'

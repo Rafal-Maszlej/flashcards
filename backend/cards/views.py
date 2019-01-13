@@ -1,19 +1,19 @@
 from rest_framework import viewsets
 
-from cards.models import FlashCardQuestion, FlashCardAnswer, FlashCardCategory
-from cards.serializers import FlashCardQuestionSerializer, FlashCardAnswerSerializer, FlashCardCategorySerializer
+from cards.models import CardQuestion, CardAnswer, CardCategory
+from cards.serializers import CardQuestionSerializer, CardAnswerSerializer, CardCategorySerializer
 
 
-class FlashCardCategoryViewSet(viewsets.ModelViewSet):
-    queryset = FlashCardCategory.objects.all()
-    serializer_class = FlashCardCategorySerializer
+class CardCategoryViewSet(viewsets.ModelViewSet):
+    queryset = CardCategory.objects.all()
+    serializer_class = CardCategorySerializer
 
 
-class FlashCardQuestionViewSet(viewsets.ModelViewSet):
-    queryset = FlashCardQuestion.objects.all()
-    serializer_class = FlashCardQuestionSerializer
+class CardQuestionViewSet(viewsets.ModelViewSet):
+    queryset = CardQuestion.objects.all()
+    serializer_class = CardQuestionSerializer
 
 
-class FlashCardAnswerViewSet(viewsets.ModelViewSet):
-    queryset = FlashCardAnswer.objects.all()
-    serializer_class = FlashCardAnswerSerializer
+class CardAnswerViewSet(viewsets.ModelViewSet):
+    queryset = CardAnswer.objects.all()
+    serializer_class = CardAnswerSerializer
