@@ -1,27 +1,27 @@
 [
   {
-    "model": "cards.cardcategory",
+    "model": "card.cardcategory",
     "pk": 1,
     "fields": {
       "name": "category1"
     }
   },
   {
-    "model": "cards.cardcategory",
+    "model": "card.cardcategory",
     "pk": 2,
     "fields": {
       "name": "category2"
     }
   },
   {
-    "model": "cards.cardcategory",
+    "model": "card.cardcategory",
     "pk": 3,
     "fields": {
       "name": "category3"
     }
   },
   {
-    "model": "cards.cardquestion",
+    "model": "card.cardquestion",
     "pk": 1,
     "fields": {
       "category": 1,
@@ -32,7 +32,7 @@
     }
   },
   {
-    "model": "cards.cardquestion",
+    "model": "card.cardquestion",
     "pk": 2,
     "fields": {
       "category": 1,
@@ -43,7 +43,7 @@
     }
   },
   {
-    "model": "cards.cardquestion",
+    "model": "card.cardquestion",
     "pk": 3,
     "fields": {
       "category": 1,
@@ -54,7 +54,7 @@
     }
   },
   {
-    "model": "cards.cardquestion",
+    "model": "card.cardquestion",
     "pk": 4,
     "fields": {
       "category": 2,
@@ -65,7 +65,7 @@
     }
   },
   {
-    "model": "cards.cardquestion",
+    "model": "card.cardquestion",
     "pk": 5,
     "fields": {
       "category": 3,
@@ -76,7 +76,7 @@
     }
   },
   {
-    "model": "cards.cardquestion",
+    "model": "card.cardquestion",
     "pk": 6,
     "fields": {
       "category": 3,
@@ -87,7 +87,7 @@
     }
   },
   {
-    "model": "cards.cardanswer",
+    "model": "card.cardanswer",
     "pk": 1,
     "fields": {
       "question": 1,
@@ -98,7 +98,7 @@
     }
   },
   {
-    "model": "cards.cardanswer",
+    "model": "card.cardanswer",
     "pk": 2,
     "fields": {
       "question": 2,
@@ -109,7 +109,7 @@
     }
   },
   {
-    "model": "cards.cardanswer",
+    "model": "card.cardanswer",
     "pk": 3,
     "fields": {
       "question": 3,
@@ -120,7 +120,7 @@
     }
   },
   {
-    "model": "cards.cardanswer",
+    "model": "card.cardanswer",
     "pk": 4,
     "fields": {
       "question": 2,
@@ -131,7 +131,7 @@
     }
   },
   {
-    "model": "cards.cardanswer",
+    "model": "card.cardanswer",
     "pk": 5,
     "fields": {
       "question": 6,
@@ -142,7 +142,7 @@
     }
   },
   {
-    "model": "cards.cardanswer",
+    "model": "card.cardanswer",
     "pk": 6,
     "fields": {
       "question": 6,
@@ -153,7 +153,7 @@
     }
   },
   {
-    "model": "cards.cardanswer",
+    "model": "card.cardanswer",
     "pk": 7,
     "fields": {
       "question": 5,
