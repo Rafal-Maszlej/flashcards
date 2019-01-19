@@ -1,11 +1,11 @@
 from rest_framework.routers import DefaultRouter
 from rest_framework_nested.routers import NestedDefaultRouter
 
-from cards.views import CardCategoryViewSet, CardQuestionViewSet, CardAnswerViewSet
+from cards.views import CategoryViewSet, CardQuestionViewSet, CardAnswerViewSet
 
 
 cards_router = DefaultRouter()
-cards_router.register('categories', CardCategoryViewSet, basename='category')
+cards_router.register('categories', CategoryViewSet, basename='category')
 
 questions_router = NestedDefaultRouter(cards_router, 'categories', lookup='category')
 questions_router.register('questions', CardQuestionViewSet, basename='question')

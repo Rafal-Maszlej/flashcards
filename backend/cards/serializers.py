@@ -1,11 +1,11 @@
 from rest_framework import serializers
 
-from cards.models import CardQuestion, CardAnswer, CardCategory
+from cards.models import CardQuestion, CardAnswer, Category
 
 
-class CardCategorySerializer(serializers.ModelSerializer):
+class CategorySerializer(serializers.ModelSerializer):
     class Meta:
-        model = CardCategory
+        model = Category
         fields = '__all__'
 
 
