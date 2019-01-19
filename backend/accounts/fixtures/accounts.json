@@ -1,0 +1,56 @@
+[
+  {
+    "model": "accounts.customuser",
+    "pk": 1,
+    "fields": {
+      "password": "pbkdf2_sha256$120000$LKabDFQzAYgQ$/4ZANXEpfOUnw939kGAynmT82iNFcy6oMydZ3mhf4LA=",
+      "last_login": "2019-01-19T17:08:59.990Z",
+      "is_superuser": true,
+      "username": "admin",
+      "first_name": "",
+      "last_name": "",
+      "email": "admin@flashcards.com",
+      "is_staff": true,
+      "is_active": true,
+      "date_joined": "2019-01-19T17:08:42.083Z",
+      "groups": [],
+      "user_permissions": []
+    }
+  },
+  {
+    "model": "accounts.customuser",
+    "pk": 2,
+    "fields": {
+      "password": "pbkdf2_sha256$120000$mHSKK8FlGbCr$6REfp6ZTxE5sZWqy0CosFNOwyeUnPXnegUev7ebA02s=",
+      "last_login": "2019-01-19T17:18:11.485Z",
+      "is_superuser": false,
+      "username": "user",
+      "first_name": "",
+      "last_name": "",
+      "email": "user@flashcards.com",
+      "is_staff": false,
+      "is_active": true,
+      "date_joined": "2019-01-19T17:17:02.849Z",
+      "groups": [],
+      "user_permissions": []
+    }
+  },
+  {
+    "model": "accounts.account",
+    "pk": 1,
+    "fields": {
+      "user": 1,
+      "created_at": "2019-01-19T17:17:52.440Z",
+      "updated_at": "2019-01-19T17:17:52.441Z"
+    }
+  },
+  {
+    "model": "accounts.account",
+    "pk": 2,
+    "fields": {
+      "user": 2,
+      "created_at": "2019-01-19T17:17:52.440Z",
+      "updated_at": "2019-01-19T17:17:52.441Z"
+    }
+  }
+]
