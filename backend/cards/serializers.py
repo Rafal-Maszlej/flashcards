@@ -1,6 +1,6 @@
 from rest_framework import serializers
 
-from card.models import CardQuestion, CardAnswer, CardCategory
+from cards.models import CardQuestion, CardAnswer, CardCategory
 
 
 class CardCategorySerializer(serializers.ModelSerializer):

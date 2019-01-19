@@ -1,7 +1,7 @@
 from rest_framework import viewsets
 
-from card.models import CardQuestion, CardAnswer, CardCategory
-from card.serializers import CardQuestionSerializer, CardAnswerSerializer, CardCategorySerializer
+from cards.models import CardQuestion, CardAnswer, CardCategory
+from cards.serializers import CardQuestionSerializer, CardAnswerSerializer, CardCategorySerializer
 
 
 class CardCategoryViewSet(viewsets.ModelViewSet):

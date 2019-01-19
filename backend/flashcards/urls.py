@@ -18,8 +18,8 @@ from django.urls import path, include
 
 
 api_urls = [
-    path('accounts/', include('account.urls')),
-    path('cards/', include('card.urls')),
+    path('accounts/', include('accounts.urls')),
+    path('cards/', include('cards.urls')),
 ]
 
 

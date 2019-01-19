@@ -1,8 +1,8 @@
 from django.urls import reverse
 from rest_framework import status, test
 
-from account.models import Account
-from account.tests.factories import AccountFactory
+from accounts.models import Account
+from accounts.tests.factories import AccountFactory
 
 
 class AccountsListTestCase(test.APITestCase):

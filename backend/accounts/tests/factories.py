@@ -3,7 +3,7 @@ import factory
 from django.contrib.auth import get_user_model
 from django.utils import timezone
 
-from account.models import Account
+from accounts.models import Account
 
 
 User = get_user_model()

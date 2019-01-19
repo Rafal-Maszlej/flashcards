@@ -1,8 +1,8 @@
 from rest_framework import viewsets
 from rest_framework.permissions import IsAdminUser
 
-from account.models import Account
-from account.serializers import AccountSerializer
+from accounts.models import Account
+from accounts.serializers import AccountSerializer
 
 
 class AccountViewSet(viewsets.ModelViewSet):

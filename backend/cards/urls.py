@@ -1,7 +1,7 @@
 from rest_framework.routers import DefaultRouter
 from rest_framework_nested.routers import NestedDefaultRouter
 
-from card.views import CardCategoryViewSet, CardQuestionViewSet, CardAnswerViewSet
+from cards.views import CardCategoryViewSet, CardQuestionViewSet, CardAnswerViewSet
 
 
 cards_router = DefaultRouter()

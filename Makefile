@@ -9,4 +9,4 @@ dev:
 
 .PHONY: fixtures
 fixtures:
-	docker-compose exec backend bash -c "python manage.py loaddata ./card/fixtures/*"
+	docker-compose exec backend bash -c "python manage.py loaddata ./cards/fixtures/*"

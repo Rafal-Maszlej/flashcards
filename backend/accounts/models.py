@@ -1,12 +1,14 @@
-from django.contrib.auth import get_user_model
+from django.conf import settings
+from django.contrib.auth.models import AbstractUser
 from django.db import models
 
 
-User = get_user_model()
+class CustomUser(AbstractUser):
+    pass
 
 
 class Account(models.Model):
-    user = models.OneToOneField(User, on_delete=models.CASCADE, related_name='account')
+    user = models.OneToOneField(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, related_name='account')
 
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)

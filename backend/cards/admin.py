@@ -1,6 +1,6 @@
 from django.contrib import admin
 
-from card.models import CardAnswer, CardQuestion, CardCategory
+from cards.models import CardAnswer, CardQuestion, CardCategory
 
 
 class CardCategoryAdmin(admin.ModelAdmin):
