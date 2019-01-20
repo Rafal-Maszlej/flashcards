@@ -1,12 +1,15 @@
 from rest_framework import viewsets
+from rest_framework.decorators import action
+from rest_framework.response import Response
 
-from cards.models import CardQuestion, CardAnswer, CardCategory
-from cards.serializers import CardQuestionSerializer, CardAnswerSerializer, CardCategorySerializer
+from cards.filters import AuthorOrAdminFilter
+from cards.models import Category, CardQuestion, CardAnswer, CardSet
+from cards.serializers import CategorySerializer, CardQuestionSerializer, CardAnswerSerializer, CardSetSerializer
 
 
-class CardCategoryViewSet(viewsets.ModelViewSet):
-    queryset = CardCategory.objects.all()
-    serializer_class = CardCategorySerializer
+class CategoryViewSet(viewsets.ModelViewSet):
+    queryset = Category.objects.all()
+    serializer_class = CategorySerializer
 
 
 class CardQuestionViewSet(viewsets.ModelViewSet):
@@ -17,3 +20,14 @@ class CardQuestionViewSet(viewsets.ModelViewSet):
 class CardAnswerViewSet(viewsets.ModelViewSet):
     queryset = CardAnswer.objects.all()
     serializer_class = CardAnswerSerializer
+
+
+class CardSetViewSet(viewsets.ModelViewSet):
+    queryset = CardSet.public_objects.all()
+    serializer_class = CardSetSerializer
+    filter_backends = (AuthorOrAdminFilter,)
+
+    @action(methods=['GET'], detail=False)
+    def private(self, request):
+        queryset = CardSet.private_objects.filter(author=request.user.account)
+        return Response(CardSetSerializer(queryset, many=True).data)

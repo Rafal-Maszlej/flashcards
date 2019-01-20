@@ -1,9 +1,11 @@
 from django.db import models
+from djchoices import DjangoChoices, ChoiceItem
 
 from accounts.models import Account
+from cards.managers import PrivateManager, PublicManager
 
 
-class CardCategory(models.Model):
+class Category(models.Model):
     name = models.CharField(max_length=120)
 
     def __str__(self):
@@ -11,7 +13,7 @@ class CardCategory(models.Model):
 
 
 class CardQuestion(models.Model):
-    category = models.ForeignKey(CardCategory, on_delete=models.CASCADE, related_name='questions')
+    category = models.ForeignKey(Category, on_delete=models.CASCADE, related_name='questions')
     author = models.ForeignKey(Account, null=True, blank=True, on_delete=models.SET_NULL, related_name='questions')
     content = models.CharField(max_length=200)
     correct_answer = models.CharField(max_length=200)
@@ -30,3 +32,27 @@ class CardAnswer(models.Model):
 
     def __str__(self):
         return f"<Answer: {self.question.content}>"
+
+
+class CardSet(models.Model):
+    class SizeType(DjangoChoices):
+        small = ChoiceItem("S")
+        medium = ChoiceItem("M")
+        large = ChoiceItem("L")
+
+    title = models.CharField(max_length=120)
+    description = models.TextField()
+    author = models.ForeignKey(Account, on_delete=models.SET_NULL, null=True, related_name='card_sets')
+    category = models.ForeignKey(Category, on_delete=models.PROTECT, related_name='card_sets')
+    questions = models.ManyToManyField(CardQuestion)
+    size = models.CharField(max_length=1, choices=SizeType.choices)
+    public = models.BooleanField(default=True)
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
+
+    objects = models.Manager()
+    public_objects = PublicManager()
+    private_objects = PrivateManager()
+
+    def __str__(self):
+        return f"<CardSet: {self.pk}>"

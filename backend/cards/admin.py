@@ -1,14 +1,14 @@
 from django.contrib import admin
 
-from cards.models import CardAnswer, CardQuestion, CardCategory
+from cards.models import Category, CardAnswer, CardQuestion, CardSet
 
 
-class CardCategoryAdmin(admin.ModelAdmin):
+class CategoryAdmin(admin.ModelAdmin):
     list_display = ('name',)
     search_fields = ('name',)
 
     class Meta:
-        model = CardCategory
+        model = Category
 
 
 class CardQuestionAdmin(admin.ModelAdmin):
@@ -33,6 +33,12 @@ class CardAnswerAdmin(admin.ModelAdmin):
         models = CardAnswer
 
 
-admin.site.register(CardCategory, CardCategoryAdmin)
+class CardSetAdmin(admin.ModelAdmin):
+    class Meta:
+        model = CardSet
+
+
+admin.site.register(Category, CategoryAdmin)
 admin.site.register(CardQuestion, CardQuestionAdmin)
 admin.site.register(CardAnswer, CardAnswerAdmin)
+admin.site.register(CardSet, CardSetAdmin)
