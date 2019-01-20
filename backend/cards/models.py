@@ -2,6 +2,7 @@ from django.db import models
 from djchoices import DjangoChoices, ChoiceItem
 
 from accounts.models import Account
+from cards.managers import PrivateManager, PublicManager
 
 
 class Category(models.Model):
@@ -48,6 +49,10 @@ class CardSet(models.Model):
     public = models.BooleanField(default=True)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
+
+    objects = models.Manager()
+    public_objects = PublicManager()
+    private_objects = PrivateManager()
 
     def __str__(self):
         return f"<CardSet: {self.pk}>"

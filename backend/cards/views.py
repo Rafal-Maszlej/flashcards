@@ -1,4 +1,6 @@
 from rest_framework import viewsets
+from rest_framework.decorators import action
+from rest_framework.response import Response
 
 from cards.filters import AuthorOrAdminFilter
 from cards.models import Category, CardQuestion, CardAnswer, CardSet
@@ -21,6 +23,11 @@ class CardAnswerViewSet(viewsets.ModelViewSet):
 
 
 class CardSetViewSet(viewsets.ModelViewSet):
-    queryset = CardSet.objects.filter(public=True)
+    queryset = CardSet.public_objects.all()
     serializer_class = CardSetSerializer
     filter_backends = (AuthorOrAdminFilter,)
+
+    @action(methods=['GET'], detail=False)
+    def private(self, request):
+        queryset = CardSet.private_objects.filter(author=request.user.account)
+        return Response(CardSetSerializer(queryset, many=True).data)
