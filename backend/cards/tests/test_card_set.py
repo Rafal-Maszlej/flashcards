@@ -139,3 +139,10 @@ class CreateCardSetTestCase(test.APITestCase):
         response = self.client.post(self.card_set_list_url, data=self.data)
 
         self.assertEqual(response.status_code, status.HTTP_400_BAD_REQUEST)
+
+    def test_cannot_add_more_questions_than_max_size(self):
+        self.data['questions'] = [question.pk for question in self.questions]
+
+        response = self.client.post(self.card_set_list_url, data=self.data)
+
+        self.assertEqual(response.status_code, status.HTTP_400_BAD_REQUEST)

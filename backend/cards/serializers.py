@@ -49,6 +49,11 @@ class CardSetSerializer(serializers.ModelSerializer):
         if not (attrs.get('questions') or attrs.get('size')):
             raise ValidationError(f"One of these fields is missing: 'size', 'questions")
 
+        max_questions = max(settings.CARDS_SET_SIZES.values())
+
+        if len(attrs.get('questions')) > max_questions:
+            raise ValidationError(f"The maximum number of questions has been exceeded: {max_questions}")
+
         return attrs
 
     def to_internal_value(self, data):
