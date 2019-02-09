@@ -7,7 +7,7 @@ from cards.views import CategoryViewSet, CardQuestionViewSet, CardAnswerViewSet,
 cards_router = DefaultRouter()
 cards_router.register('categories', CategoryViewSet, basename='category')
 cards_router.register('questions', CardQuestionViewSet, basename='question')
-cards_router.register('', CardSetViewSet, basename='card-set')
+cards_router.register('', CardSetViewSet, basename='cardset')
 
 answers_router = NestedDefaultRouter(cards_router, 'questions', lookup='question')
 answers_router.register('answers', CardAnswerViewSet, basename='answer')

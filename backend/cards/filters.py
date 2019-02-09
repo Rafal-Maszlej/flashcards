@@ -11,19 +11,19 @@ class AuthorOrAdminFilter(BaseFilterBackend):
         return queryset.filter(author=request.user.account)
 
 
-class CardSetFilter(filters.FilterSet):
+class CardSetFilterSet(filters.FilterSet):
     class Meta:
         model = CardSet
         fields = ('public', 'size', 'category')
 
 
-class CardAnswerFilter(filters.FilterSet):
+class CardAnswerFilterSet(filters.FilterSet):
     class Meta:
         model = CardAnswer
         fields = ('correct',)
 
 
-class CardQuestionFilter(filters.FilterSet):
+class CardQuestionFilterSet(filters.FilterSet):
     class Meta:
         model = CardQuestion
         fields = ('public', 'category')
