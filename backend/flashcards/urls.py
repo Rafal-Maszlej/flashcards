@@ -17,16 +17,21 @@ from django.conf import settings
 from django.contrib import admin
 from django.urls import path, include
 
+from rest_framework_swagger.views import get_swagger_view
+
+
+schema_view = get_swagger_view(title='Flashcards API')
 
 api_urls = [
     path('accounts/', include('accounts.urls')),
     path('cards/', include('cards.urls')),
+    path('swagger/', schema_view),
 ]
 
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('api/', include(api_urls))
+    path('api/', include(api_urls)),
 ]
 
 
