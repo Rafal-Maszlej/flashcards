@@ -10,7 +10,7 @@ cards_router.register('questions', CardQuestionViewSet, basename='question')
 cards_router.register('', CardSetViewSet, basename='card-set')
 
 answers_router = NestedDefaultRouter(cards_router, 'questions', lookup='question')
-answers_router.register('answers', CardAnswerViewSet, basename='answers')
+answers_router.register('answers', CardAnswerViewSet, basename='answer')
 
 
 urlpatterns = cards_router.urls + answers_router.urls

@@ -18,7 +18,8 @@ class CardSetListTestCase(test.APITestCase):
         cls.card_set_public = CardSetFactory(author=cls.account, public=True)
         cls.card_set_private = CardSetFactory(author=cls.account, public=False)
         cls.admin_card_set = CardSetFactory(author=cls.admin_account, public=True)
-        cls.other_card_set = CardSetFactory(public=True)
+        cls.other_card_set_public = CardSetFactory(public=True)
+        cls.other_card_set_private = CardSetFactory(public=False)
 
     def setUp(self):
         self.client.force_login(self.account.user)
@@ -36,8 +37,7 @@ class CardSetListTestCase(test.APITestCase):
         response = self.client.get(self.card_set_list_url)
 
         self.assertEqual(response.status_code, status.HTTP_200_OK)
-        self.assertEqual(len(response.data), 4)
-        self.assertIn(self.card_set_private.pk, [card_set['id'] for card_set in response.data])
+        self.assertEqual(len(response.data), 5)
 
     def test_user_get_own_sets(self):
         response = self.client.get(self.card_set_list_url)
