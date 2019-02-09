@@ -30,21 +30,25 @@ class CardSetListTestCase(test.APITestCase):
 
         self.assertEqual(response.status_code, status.HTTP_403_FORBIDDEN)
 
-    def test_admin_get_all_public_sets(self):
+    def test_admin_get_all_sets(self):
         self.client.force_login(self.admin_account.user)
 
         response = self.client.get(self.card_set_list_url)
 
         self.assertEqual(response.status_code, status.HTTP_200_OK)
-        self.assertEqual(len(response.data), 3)
-        self.assertNotIn(self.card_set_private.pk, [card_set['id'] for card_set in response.data])
+        self.assertEqual(len(response.data), 4)
+        self.assertIn(self.card_set_private.pk, [card_set['id'] for card_set in response.data])
 
-    def test_user_get_own_public_sets(self):
+    def test_user_get_own_sets(self):
         response = self.client.get(self.card_set_list_url)
 
         self.assertEqual(response.status_code, status.HTTP_200_OK)
-        self.assertEqual(len(response.data), 1)
-        self.assertEqual(response.data[0]['id'], self.card_set_public.pk)
+        self.assertEqual(len(response.data), 2)
+
+        response_cardset_pks = [cardset['id'] for cardset in response.data]
+
+        self.assertIn(self.card_set_public.pk, response_cardset_pks)
+        self.assertIn(self.card_set_private.pk, response_cardset_pks)
 
 
 class PrivateCardSetListTestCase(test.APITestCase):
