@@ -10,3 +10,7 @@ dev:
 .PHONY: fixtures
 fixtures:
 	docker-compose exec backend bash -c "python manage.py loaddata accounts"
+
+.PHONY: tests
+tests:
+	docker-compose exec backend bash -c "python manage.py test"

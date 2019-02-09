@@ -23,11 +23,11 @@ class CardAnswerViewSet(viewsets.ModelViewSet):
 
 
 class CardSetViewSet(viewsets.ModelViewSet):
-    queryset = CardSet.public_objects.all()
+    queryset = CardSet.objects.filter(public=True)
     serializer_class = CardSetSerializer
     filter_backends = (AuthorOrAdminFilter,)
 
     @action(methods=['GET'], detail=False)
     def private(self, request):
-        queryset = CardSet.private_objects.filter(author=request.user.account)
+        queryset = CardSet.objects.filter(author=request.user.account, public=False)
         return Response(CardSetSerializer(queryset, many=True).data)
