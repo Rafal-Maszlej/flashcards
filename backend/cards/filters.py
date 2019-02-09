@@ -1,7 +1,7 @@
 from django_filters import rest_framework as filters
 from rest_framework.filters import BaseFilterBackend
 
-from cards.models import CardSet
+from cards.models import CardSet, CardQuestion
 
 
 class AuthorOrAdminFilter(BaseFilterBackend):
@@ -15,3 +15,9 @@ class CardSetFilter(filters.FilterSet):
     class Meta:
         model = CardSet
         fields = ('public', 'size', 'category')
+
+
+class CardQuestionFilter(filters.FilterSet):
+    class Meta:
+        model = CardQuestion
+        fields = ('public', 'category')

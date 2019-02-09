@@ -16,6 +16,7 @@ class CardQuestion(models.Model):
     author = models.ForeignKey(Account, null=True, blank=True, on_delete=models.SET_NULL, related_name='questions')
     content = models.CharField(max_length=200)
     correct_answer = models.CharField(max_length=200)
+    public = models.BooleanField(default=True)
     created_at = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
