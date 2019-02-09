@@ -37,7 +37,7 @@ class AccountsListTestCase(test.APITestCase):
 class AccountMyTestCase(test.APITestCase):
     @classmethod
     def setUpTestData(cls):
-        cls.accounts_my_url = reverse('accounts-my')
+        cls.accounts_my_url = reverse('accounts-me')
 
         cls.account1 = AccountFactory()
         cls.account2 = AccountFactory()
