@@ -17,6 +17,7 @@ class CardQuestionFactory(factory.DjangoModelFactory):
     author = factory.SubFactory(AccountFactory)
     content = factory.Faker('sentence')
     correct_answer = factory.Faker('sentence')
+    public = factory.Faker('boolean')
     created_at = factory.Faker('date_this_decade', before_today=True)
 
     class Meta:

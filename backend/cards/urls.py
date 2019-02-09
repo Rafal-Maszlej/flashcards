@@ -6,13 +6,11 @@ from cards.views import CategoryViewSet, CardQuestionViewSet, CardAnswerViewSet,
 
 cards_router = DefaultRouter()
 cards_router.register('categories', CategoryViewSet, basename='category')
-cards_router.register('card-sets', CardSetViewSet, basename='card-set')
+cards_router.register('questions', CardQuestionViewSet, basename='question')
+cards_router.register('', CardSetViewSet, basename='cardset')
 
-questions_router = NestedDefaultRouter(cards_router, 'categories', lookup='category')
-questions_router.register('questions', CardQuestionViewSet, basename='question')
-
-answers_router = NestedDefaultRouter(questions_router, 'questions', lookup='question')
-answers_router.register('answers', CardAnswerViewSet, basename='answers')
+answers_router = NestedDefaultRouter(cards_router, 'questions', lookup='question')
+answers_router.register('answers', CardAnswerViewSet, basename='answer')
 
 
-urlpatterns = cards_router.urls + questions_router.urls + answers_router.urls
+urlpatterns = cards_router.urls + answers_router.urls

@@ -38,6 +38,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'django_filters',
     'rest_framework',
 
     'accounts',
@@ -155,7 +156,7 @@ STATIC_URL = '/static/'
 STATIC_ROOT = os.path.join(BASE_DIR, 'static/')
 
 
-CARDS_SET_SIZES = OrderedDict([
+CARDSET_SIZES = OrderedDict([
     ('S', 10),
     ('M', 25),
     ('L', 50)

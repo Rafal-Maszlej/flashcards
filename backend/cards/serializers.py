@@ -35,7 +35,7 @@ class CardSetSerializer(serializers.ModelSerializer):
     def _compute_size(questions):
         len_questions = len(questions)
 
-        for size_key, size_value in settings.CARDS_SET_SIZES.items():
+        for size_key, size_value in settings.CARDSET_SIZES.items():
             if len_questions <= size_value:
                 return size_key
 
@@ -49,7 +49,7 @@ class CardSetSerializer(serializers.ModelSerializer):
         if not (attrs.get('questions') or attrs.get('size')):
             raise ValidationError(f"One of these fields is missing: 'size', 'questions")
 
-        max_questions = max(settings.CARDS_SET_SIZES.values())
+        max_questions = max(settings.CARDSET_SIZES.values())
 
         if len(attrs.get('questions')) > max_questions:
             raise ValidationError(f"The maximum number of questions has been exceeded: {max_questions}")
@@ -64,7 +64,7 @@ class CardSetSerializer(serializers.ModelSerializer):
 
     def create(self, validated_data):
         if not validated_data['questions']:
-            number_of_questions = settings.CARDS_SET_SIZES[validated_data['size']]
+            number_of_questions = settings.CARDSET_SIZES[validated_data['size']]
 
             validated_data['questions'] = self._random_questions(number_of_questions)
 
