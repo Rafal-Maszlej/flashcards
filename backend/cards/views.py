@@ -28,8 +28,3 @@ class CardSetViewSet(viewsets.ModelViewSet):
     serializer_class = CardSetSerializer
     filter_backends = (AuthorOrAdminFilter, filters.DjangoFilterBackend)
     filterset_class = CardSetFilter
-
-    @action(methods=['GET'], detail=False)
-    def private(self, request):
-        queryset = CardSet.objects.filter(author=request.user.account, public=False)
-        return Response(CardSetSerializer(queryset, many=True).data)

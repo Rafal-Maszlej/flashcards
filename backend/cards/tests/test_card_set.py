@@ -51,40 +51,6 @@ class CardSetListTestCase(test.APITestCase):
         self.assertIn(self.card_set_private.pk, response_cardset_pks)
 
 
-class PrivateCardSetListTestCase(test.APITestCase):
-    @classmethod
-    def setUpTestData(cls):
-        cls.private_card_set_list_url = reverse('card-set-private')
-
-        cls.account = AccountFactory()
-        cls.admin_account = AccountFactory(user__is_staff=True)
-
-        cls.card_set_public = CardSetFactory(author=cls.account, public=True)
-        cls.card_set_private = CardSetFactory(author=cls.account, public=False)
-        cls.admin_card_set = CardSetFactory(author=cls.admin_account, public=True)
-        cls.admin_private_card_set = CardSetFactory(author=cls.admin_account, public=False)
-        cls.other_private_card_set = CardSetFactory(public=False)
-
-    def setUp(self):
-        self.client.force_login(self.account.user)
-
-    def test_admin_get_only_own_private_sets(self):
-        self.client.force_login(self.admin_account.user)
-
-        response = self.client.get(self.private_card_set_list_url)
-
-        self.assertEqual(response.status_code, status.HTTP_200_OK)
-        self.assertEqual(len(response.data), 1)
-        self.assertEqual(response.data[0]['id'], self.admin_private_card_set.pk)
-
-    def test_user_get_own_private_sets(self):
-        response = self.client.get(self.private_card_set_list_url)
-
-        self.assertEqual(response.status_code, status.HTTP_200_OK)
-        self.assertEqual(len(response.data), 1)
-        self.assertEqual(response.data[0]['id'], self.card_set_private.pk)
-
-
 @override_settings(CARDS_SET_SIZES=CARDS_SET_SIZES)
 class CreateCardSetTestCase(test.APITestCase):
     @classmethod

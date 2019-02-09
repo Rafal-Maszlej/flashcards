@@ -14,4 +14,4 @@ class AuthorOrAdminFilter(BaseFilterBackend):
 class CardSetFilter(filters.FilterSet):
     class Meta:
         model = CardSet
-        fields = ('public',)
+        fields = ('public', 'size', 'category')
