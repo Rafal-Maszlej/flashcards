@@ -20,7 +20,19 @@ class CardQuestionSerializer(serializers.ModelSerializer):
 class CardAnswerSerializer(serializers.ModelSerializer):
     class Meta:
         model = CardAnswer
-        fields = '__all__'
+        fields = ('id', 'question', 'author', 'content', 'correct', 'created_at')
+        read_only_fields = ('question', 'author', 'correct', 'created_at',)
+
+    def to_internal_value(self, data):
+        data = super().to_internal_value(data)
+
+        question = CardQuestion.objects.get(pk=self.context['view'].kwargs['question_pk'])
+
+        data['question'] = question
+        data['author'] = self.context['request'].user.account
+        data['correct'] = data['content'] == question.correct_answer
+
+        return data
 
 
 class CardSetSerializer(serializers.ModelSerializer):

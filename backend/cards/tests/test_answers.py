@@ -2,6 +2,7 @@ from django.urls import reverse
 from rest_framework import status, test
 
 from accounts.tests.factories import AccountFactory
+from cards.models import CardAnswer
 from cards.tests.factories import CardAnswerFactory, CardQuestionFactory
 
 
@@ -51,3 +52,54 @@ class CardAnswerListTestCase(test.APITestCase):
 
         self.assertEqual(response.status_code, status.HTTP_200_OK)
         self.assertEqual(response.data, [])
+
+
+class SubmitAnswerTestCase(test.APITestCase):
+    @classmethod
+    def setUpTestData(cls):
+        cls.question = CardQuestionFactory()
+        cls.answer_list_url = reverse('answer-list', args=(cls.question.pk,))
+        cls.account = AccountFactory()
+
+    def setUp(self):
+        self.answer_data = {
+            "content": self.question.correct_answer
+        }
+        self.client.force_login(self.account.user)
+
+    def test_correct_data(self):
+        response = self.client.post(self.answer_list_url, data=self.answer_data)
+
+        self.assertEqual(response.status_code, status.HTTP_201_CREATED)
+        self.assertTrue(CardAnswer.objects.exists())
+
+    def test_correct_author(self):
+        response = self.client.post(self.answer_list_url, data=self.answer_data)
+
+        self.assertEqual(response.data.get('author'), self.account.pk)
+
+    def test_correct_question(self):
+        response = self.client.post(self.answer_list_url, data=self.answer_data)
+
+        self.assertEqual(response.data.get('question'), self.question.pk)
+
+    def test_wrong_answer(self):
+        self.answer_data['content'] = 'wrong answer'
+
+        response = self.client.post(self.answer_list_url, data=self.answer_data)
+
+        self.assertEqual(response.status_code, status.HTTP_201_CREATED)
+        self.assertFalse(response.data.get('correct'))
+
+    def test_correct_answer(self):
+        response = self.client.post(self.answer_list_url, data=self.answer_data)
+
+        self.assertEqual(response.status_code, status.HTTP_201_CREATED)
+        self.assertTrue(response.data.get('correct'))
+
+    def test_question_does_not_exist(self):
+        wrong_question = reverse('answer-list', args=(self.question.pk + 1,))
+
+        response = self.client.post(wrong_question, self.answer_data)
+
+        self.assertEqual(response.status_code, status.HTTP_404_NOT_FOUND)

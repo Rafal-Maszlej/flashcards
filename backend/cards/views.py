@@ -1,4 +1,5 @@
 from django_filters import rest_framework as filters
+from django.shortcuts import get_object_or_404
 from rest_framework import viewsets
 
 from cards.filters import AuthorOrAdminFilter, CardSetFilterSet, CardAnswerFilterSet, CardQuestionFilterSet
@@ -79,6 +80,10 @@ class CardAnswerViewSet(viewsets.ModelViewSet):
     def get_queryset(self):
         queryset = super().get_queryset()
         return queryset.filter(question=self.kwargs['question_pk'])
+
+    def create(self, request, *args, **kwargs):
+        get_object_or_404(CardQuestion, pk=self.kwargs.get('question_pk'))
+        return super().create(request, *args, **kwargs)
 
 
 class CardSetViewSet(viewsets.ModelViewSet):
